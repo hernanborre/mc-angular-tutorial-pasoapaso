@@ -1,0 +1,915 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Lab Introducción Angular - ArgentinaPrograma</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d730c514-b213-4d51-b597-67b73cbf314c" class="page sans"><header><h1 class="page-title">Lab Introducción Angular - ArgentinaPrograma</h1></header><div class="page-body"><p id="40c9ac51-14c7-42d1-a980-b9bf1d23b2e4" class=""><strong>Autor: Mg. Ing. Hernán Borré</strong></p><p id="e07ae1da-c0e1-43ef-a603-a1bd4f1323a4" class="">
+</p><p id="ebfa55da-f857-4565-81bb-d38511f6e874" class="">
+</p><p id="41ab107d-07f3-469b-8e0e-8ca206663dd4" class=""><em>Precondición:</em> </p><p id="5dea1483-290d-4a48-964b-8cb83ae3881a" class="">Instalar nodejs y Visual Studio Code</p><p id="44d6236a-3517-4826-8f3e-0f26176eb91c" class="">
+</p><p id="f39d82ba-9ef6-441d-99aa-fc70ec7246a7" class="">Página Oficial de Angular (todo en inglés solamente): <a href="https://angular.io/">https://angular.io/</a></p><p id="0ea1167a-c965-4999-b48e-83c99a7f716f" class="">Ejemplo completo subido en <a href="https://github.com/hernanborre/mc-angular-tutorial">https://github.com/hernanborre/mc-angular-tutorial</a></p><p id="2ae542d4-05f5-4f40-b265-9fb45f54d2af" class="">
+</p><p id="667234cd-adb3-40ad-9c37-ab6eaa9cffa7" class="">Creamos una carpeta nueva llamada “clase-angular” </p><ul id="610d8cef-1f50-4258-bb31-9204f6b4b53e" class="bulleted-list"><li style="list-style-type:disc">Creamos una carpeta nueva donde queramos: (yo la voy a llamar <em>“clase-angular”</em> </li></ul><p id="e422eae1-1f46-4520-b477-c7c5cc708286" class="">
+</p><ul id="692e03d0-01da-404b-bd86-3f1f1834fd1b" class="bulleted-list"><li style="list-style-type:disc">Abrimos el VS Code y arrastramos y tiramos esta carpeta nueva en el VS Code </li></ul><p id="6ad75e41-7254-42c4-9809-b419c44e99f4" class=""><em>(deberías ver algo así) </em></p><figure id="92715194-fb41-4f70-a02d-35d13b51acd7" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled.png"/></a></figure><p id="dc47c126-7ebe-4f44-b205-2d740120345c" class="">
+</p><p id="6c6398bd-d033-484a-8016-dd2c729fd56c" class="">Abrimos una nueva Terminal y ejecutamos: </p><p id="1eb0f423-1b51-4c27-a525-f420fb3c2bdb" class=""><strong><code>npm -v</code></strong><strong> </strong></p><p id="3508fd54-d57e-4cfe-a7db-ca99bce1019f" class="">Si esto nos devuelve un número de versión en vez de un error, podemos continuar (sino fijate que puede estar fallando) </p><p id="ab5e9ec7-6210-4d0e-afe4-d8e2512e71eb" class="">
+</p><p id="d984ec45-2099-43ff-9ecd-47a819dcf021" class="">(ejemplo de <code><strong>npm </strong></code>andando bien en tu Terminal )</p><figure id="38eb478c-f2e2-4b81-a545-cacef541d2ca" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%201.png"><img style="width:1919px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%201.png"/></a></figure><p id="2b7248f8-94a3-4c44-afda-db93809b7917" class="">
+</p><ul id="39de9696-7813-4135-9e79-4cad0a344ef6" class="bulleted-list"><li style="list-style-type:disc">Ahora si, vamos a instalar <strong>Angular:</strong></li></ul><p id="900a40e6-b90e-476f-a1fe-dd94304998c0" class=""><code>npm install -g @angular/cli</code></p><p id="afb8e064-0396-40ee-a78b-59604cfe1c18" class="">
+</p><p id="2b838163-0406-4765-94a5-ad2896202743" class="">Luego para asegurarnos que Angular se instaló bien, ejecutamos</p><p id="8021c0c1-9635-48eb-9a37-c6ccec616583" class=""><code>ng v</code></p><p id="7d13f6f2-5558-4d7a-865f-74ff039530c7" class="">
+</p><p id="47122d7b-89ac-4b1f-b2b6-d145ae5b4ad7" class="">(debería aparecer algo así )</p><figure id="6b7583d7-f166-4dc4-a5b5-94d37fd9b38b" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%202.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%202.png"/></a></figure><p id="a9cacedf-6112-4030-bb97-5b1c2b9d14f5" class="">
+</p><ul id="660d3e24-2493-4e20-a62e-f1b5b1157e59" class="bulleted-list"><li style="list-style-type:disc">Ahora tenemos que hacer dos cosas, una es crear un nuevo proyecto de angular y la otra es hacer <code>cd</code> y meternos dentro de la carpeta recién creada (esto es MUY importante sino no te van a andar los siguientes comandos). Entonces: </li></ul><p id="0257c32d-e28f-4a97-9e5f-239152e836a1" class=""><code>ng new mi-primera-app</code></p><p id="b7c1fa60-5435-43c4-a5e4-ea4f8c7d53a8" class="">Le damo <code><strong>y</strong></code><strong>’ a la opción del router y elegimos soloi </strong><code><strong>CSS </strong></code><strong>en la segunda pregunta y listo! </strong></p><figure id="dc617e2c-a1b6-42b8-81b0-8e1e5143e38c" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%203.png"><img style="width:1543px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%203.png"/></a></figure><p id="cb8d4fe6-cf64-4761-9450-4863c0d2cf34" class=""><em>(esperamos un rato que se cree todo, puede tardar y luego ejecutarmos)</em></p><p id="faad8589-7f35-4a9b-aba7-46cf1f1d9fe4" class=""><code>cd mi-primera-app</code></p><p id="f3093772-ef85-4c9c-a695-07d9a2bb2195" class=""><em>(deberíamos tener algo así)</em></p><figure id="db089c68-bf44-491c-8728-a8c7579ba533" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%204.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%204.png"/></a></figure><p id="b3a06ce7-c04d-4a0a-9a9b-0a3f86150e43" class="">En la carpeta creada en el Explorer de VS Code, si abrís la nueva carpeta deberías ver varios archivos generados por angular!</p><p id="3f95c6a8-147d-4726-9540-695362d278d2" class="">
+</p><p id="5ff6f4fe-ce3c-4980-aa8b-802c9241f600" class="">Lo importante está dentro de la carpeta <strong><code>src</code></strong></p><ul id="a2529cfa-87e6-440f-98f3-65b60d2fb024" class="bulleted-list"><li style="list-style-type:disc">Ahora ejecutemos la app a ver si está andando (puede tardar un poco, no te desesperes) </li></ul><p id="e7cf5d6d-7c0e-4c2e-b81c-8cfea9879382" class=""><strong><code>ng serve</code></strong></p><figure id="4a865bb6-c014-4d0b-9e25-0e2e97e97c48" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%205.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%205.png"/></a></figure><p id="5ec1ecbe-aa69-4913-bb75-914292070360" class="">
+</p><p id="20004426-ab3b-41f6-91fb-ba2636d22ace" class="">Deberías ver algo similar a lo que hay acá arriba, además abrí en un browser de Chrome, la url que me indica Angular ( http://localhost:4200 )  </p><p id="681b3517-869b-4807-a5a3-85c947152602" class="">
+</p><ul id="954bea46-3cef-413f-ac23-7723b0f04410" class="bulleted-list"><li style="list-style-type:disc"><strong>Vamos a agregar Bootstrap 5, así ya nos queda listo para usar</strong></li></ul><p id="1a3a7daf-1c75-4b71-84b9-549382ceb867" class="">De dónde sacar Bootstrap 5?</p><p id="ac818aa9-e2d5-426f-942e-8c6beb73905a" class="">Una de las opciones (la más rápida para practicar por ahora, es copiar y pegar los links a los CDN de Bootstrap 5, con lo cual, vamos a la página oficial y copiamos tanto los links a css como a los de js </p><p id="3c77ac01-4a72-4a42-99f9-ac7130075b4e" class=""><a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">https://getbootstrap.com/docs/5.0/getting-started/introduction/</a></p><p id="e0f4e44a-8978-4c78-a7ee-9de31e6fa1a4" class="">
+</p><p id="da12e251-28eb-47ad-b87f-63bc7ce4ea3f" class="">(acordate que esto va pegado dentro de la etiqueta<strong> &lt;head&gt; </strong>de tu html principal </p><pre id="180dece7-5409-46d1-aa67-6f4fc7b9dc1b" class="code code-wrap"><code>&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC&quot; crossorigin=&quot;anonymous&quot;&gt;</code></pre><p id="9326c550-2743-4a24-a9a2-650976d7913e" class="">
+</p><p id="f6270502-d650-4ea4-951b-fb57375bb6ee" class="">Esto va antes de cerrar la etiqueta <strong>&lt;/body&gt; de tu html principal</strong></p><pre id="6c4df59c-41f5-454f-bb6c-292e1f14e763" class="code code-wrap"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+</code></pre><p id="f20c861c-1cd3-4c6a-8855-286b1f2123d0" class="">Listo! ya tenemos Boostrap 5 en nuestro proyecto Angular integrado! </p><p id="21176328-0390-44d3-bbf8-5ce2c8c2437c" class="">
+</p><p id="4112dcd7-9555-48cc-8fe1-712ae7a47638" class="">Listo! ahora podemos crear nuestro primer <strong>componente</strong></p><p id="0e991fff-08a9-4603-a011-16cf38822ac4" class="">
+</p><p id="4e38fb9c-a380-4c0e-964a-73718a6d28ae" class="">Todo comienza en <code>app.module.ts</code> y esto nos dice que todo apunta a que su primer y único componente por ahora es el “AppComponent” así que vamos a ver qué tiene! </p><figure id="9002395c-4cbb-4d34-8abf-00bfe75108ba" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%206.png"><img style="width:1909px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%206.png"/></a></figure><p id="0ac9915a-40fb-43f5-80f8-ec58db23291d" class="">
+</p><p id="8d9b672e-cd00-465d-baa8-d4367ea80187" class="">Todo componente podría tener tres archivos principales (fijate más sobre esto en la página oficial de buenas prácticas y convenciones de Angular)</p><p id="2446d528-58bc-42e0-a808-e30ce5df3448" class=""><code>app.component.ts</code></p><p id="0ca0d7b2-8a7d-415c-ba84-cc54aee18f71" class=""><code>app.component.html</code></p><p id="abec90c6-5314-45d3-a95d-d5f8c54c2671" class=""><code>app.component.css </code></p><p id="414cc082-ed8f-4137-8991-c595947d97fd" class="">
+</p><p id="1ba4aefb-ab53-43aa-a395-da7d80a2d701" class="">Como te podrías imaginar, los de html y css son la vista (View) de nuestro componente llamado app en este caso! Y el código javascript (typescript) con la lógica y algunas cosas más, lo vamos a estar escribiendo en el archivo .<code>ts </code></p><p id="f4a12b70-10a9-4e31-8a7e-85717d66eb94" class="">
+</p><p id="0b27f0b2-6d8a-43f1-b8da-63e9d69880e2" class="">
+</p><p id="b6ee296f-f0ad-4236-94c0-64f352f8e635" class="">
+</p><p id="dc1f97a4-2d16-437c-9f88-c335d675aa63" class="">De la imagen anterior podemos inferir en 3 partes importantes que hacen a un componente en Angular y que se encuentran dentro del decorador <code><strong>@Component()</strong></code>:</p><ol type="1" id="4da8fbd2-95e7-4b42-9e2c-9056282d4a0d" class="numbered-list" start="1"><li><code><strong>selector</strong></code><strong>, </strong>le dice a Angular que cree e inserte una instancia de este componente siempre que encuentre la etiqueta en el html. Por ejemplo, si el HTML de una aplicación contiene &lt;app-root&gt;&lt;/app-root&gt;, entonces Angular inserta una instancia de la vista HeaderComponent entre esas etiquetas.</li></ol><ol type="1" id="d60d4487-b1d4-4589-92ae-f6ae8b14fefe" class="numbered-list" start="2"><li><code><strong>templateUrl</strong></code><strong>, </strong>la dirección relativa al template HTML del componente. Alternativamente, se puede escribir código html.</li></ol><ol type="1" id="5134ac8a-1429-46ae-9811-80de4e224e29" class="numbered-list" start="3"><li><code><strong>stylesUrl</strong></code><strong>, </strong>la dirección relativa al archivo CSS del componente.</li></ol><p id="57e15447-9ccf-4337-aee2-c39b577345b0" class="">En pocas palabras, el selector es el nombre con el cual luego invocamos al componente en el html como se puede observar en el <strong>index.html</strong> en este caso!:</p><figure id="ff64372d-4140-4780-861d-f382334d5004" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Code_7Gq0zHhP6V.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Code_7Gq0zHhP6V.png"/></a></figure><p id="709b515a-5196-4843-95ff-7e43ec93fd86" class="">
+</p><p id="89ebce3d-de32-4a8d-a6c1-a2c997a73184" class="">La manera más fácil y rápida de crear un componente es través de la consola de comandos, ayudados por angular cli! </p><p id="d8154a8d-cb05-4e1b-b558-d496d2c1326e" class=""><code><em><strong>ng generate component &lt;nombre-del-componente&gt; [opciones]</strong></em></code></p><p id="ee183e3e-c966-4c8b-b566-556144a317cc" class="">
+</p><p id="ed625992-c259-4ed0-a696-514eca7a3edb" class="">Entonces vamos a ejecutar en nuestra Terminal, estas dos líneas por separado</p><p id="f03e97c0-dde1-49dc-b9f0-ba50ca7d0ba5" class="">Una va a crear el componente personas y el otro el componente persona (ya te estarás imaginando qué va a hacer cada uno!  </p><p id="9b17311c-0daf-4023-974e-d874509f3a01" class=""><code><em><strong>ng generate component componentes/personas --skip-tests=true</strong></em></code></p><p id="db281f27-29da-4df7-83c4-d10ce46dda09" class=""><code><em><strong>ng generate component componentes/persona --skip-tests=true </strong></em></code></p><p id="c2533f53-4921-4679-9479-2f1cf6cf1961" class="">
+</p><p id="0983e8b7-bd82-4e68-b7d1-44929c8d5e2f" class="">También vamos a crear una carpeta nueva dentro de <code>src</code> que vamos a llamar <code>models </code>y adentro vamos a crear un nuevo archivo llamado <code>Persona.ts</code></p><p id="86b49256-ad78-47b3-9f4d-230bbf4d2bff" class="">En persona, vamos a definir la clase Persona y va a ser muy importante para poder usar desde la vista y empezar a separar la Vista del Model (Model / View  / Controller) También deberíamos hacer un Servicio Persona para tener así el Controller pero por el momento lo vamos a dejar para más adelante</p><p id="830222ad-b0fc-4083-8514-dfc10be279d7" class="">
+</p><p id="950fa0e1-d224-4129-b798-035ac5a48321" class=""><em>(debería quedar algo así)</em></p><figure id="ef200b90-bc76-4ed2-9d3f-028fc592bc58" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/HSq2Ppt2Um.png"><img style="width:1911px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/HSq2Ppt2Um.png"/></a></figure><p id="5679dc09-044a-42a0-83b8-d578011d2174" class="">
+</p><p id="8f3011f7-b9b8-4b1b-8f0a-d46b56d8bec5" class="">Entonces dentro de <code>Persona.ts</code> vamos a crear su clase! </p><pre id="159a9c9c-42e4-4fc9-8ce9-0ee7d2a1c480" class="code code-wrap"><code>export class Persona {
+
+    nombre:string
+    apellido: string
+    edad: number
+
+    constructor(nombre:string = &quot;&quot; , apellido:string = &quot;&quot;, edad:number = 0 ){
+        this.nombre = nombre
+        this.apellido = apellido
+        this.edad = edad
+    }
+
+    cumplirAnios(){
+        this.edad++
+    }
+}</code></pre><p id="92c37dbc-5971-4705-9544-a1d4871c08c2" class="">
+</p><figure id="7f249505-a0f5-42b7-a4c4-08b66e356df1" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/65LtM1wTBF.png"><img style="width:1916px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/65LtM1wTBF.png"/></a></figure><div id="31585b2b-4576-4485-b385-c18282e2bad6" class="column-list"><div id="7ea94476-07c5-479e-bc8c-4ecb1137d5ca" style="width:50%" class="column"><p id="e586690e-6664-4432-9b66-5f65f6f59253" class="">Borramos absolutamente todo del <code>app.component.html</code></p></div><div id="6fe04048-6bec-476d-a96d-b83861c58656" style="width:50%" class="column"></div></div><p id="47d8580c-92c0-427f-adca-035aa3bffe8e" class="">y vamos a escribir nuestra etiqueta del nuevo componente creado de Personas! </p><p id="9ea3dd5f-7afc-4442-8802-bccacd044f0b" class="">En nuestro <code>personas.component.html</code> vamos a escribir el siguiente código para mostrar una lista de personas usando la directiva de angular <code>*ngFor</code></p><pre id="1d7de216-5a4d-4076-b3ad-9e68696b4af7" class="code code-wrap"><code>&lt;div class=&quot;personas&quot;&gt;
+    &lt;h3&gt; Esta es nuestra lista de personas!&lt;/h3&gt;
+    
+    &lt;div *ngFor=&quot;let persona of personas&quot;&gt;
+        &lt;h4&gt;Nueva Persona&lt;/h4&gt;
+        &lt;p&gt;Nombre: {{persona.nombre}}&lt;/p&gt;
+        &lt;p&gt;Apellido: {{persona.apellido}}&lt;/p&gt;
+        &lt;p&gt;Edad: {{persona.edad}}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre><p id="4083c1db-f4f1-46ad-af1e-5de39887730c" class="">
+</p><p id="18ca8b73-e890-4223-a28e-290a05dc9a59" class="">También en el <code>app.component.html</code> vamos a borrar todo y dejar solo el siguiente código (llamado al componente de personas y su selector definido</p><pre id="4cdca9a9-d8bd-4533-b14b-880a6164b3bb" class="code code-wrap"><code>&lt;div class=&quot;container&quot;&gt;  
+  &lt;app-personas&gt;&lt;/app-personas&gt; 
+&lt;/div&gt;</code></pre><p id="9da19f16-db92-41d9-b5e3-1152c9cb4dc7" class="">
+</p><p id="0f2d08bd-dda3-4ad8-bacb-93962ff64b90" class="">Todavía esto no va a andar porque necesitamos definir en el archivo de lógica del componente de dónde está saliendo esa lista o array de <code>personas</code> que le estamos pidiendo iterar en en el html, no?</p><p id="2da37cb6-78b6-4d47-8111-b4ae44ccf8d4" class="">
+</p><figure id="95f3bb1c-64bf-4e5d-b894-7f039927ad34" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/y6lJvMoJoP.png"><img style="width:1901px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/y6lJvMoJoP.png"/></a></figure><p id="b14dfa81-cbc2-439e-943f-cec4bc2810fc" class="">
+</p><p id="fb9777a1-af4d-4e6f-945d-44c9adf57ae7" class="">Entonces en el <code>personas.component.ts </code> vamos a importarlo y definirlo, quedando así</p><pre id="d114c2f3-2f20-4123-a1c7-715dac5d1b8b" class="code code-wrap"><code>import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Persona } from &#x27;src/app/models/Persona&#x27;;
+
+@Component({
+  selector: &#x27;app-personas&#x27;,
+  templateUrl: &#x27;./personas.component.html&#x27;,
+  styleUrls: [&#x27;./personas.component.css&#x27;]
+})
+export class PersonasComponent implements OnInit {
+
+  personas: Persona[] = []
+
+  constructor() { }
+
+  ngOnInit(): void {
+    let persona1 = new Persona(&quot;Hernan&quot;, &quot;Borre&quot;, 28 )
+    this.personas.push(persona1)
+    this.personas.push(new Persona(&quot;Alejandro&quot;, &quot;Fantino&quot;, 55 ))
+    this.personas.push(new Persona(&quot;Nicky&quot;, &quot;Nicole&quot;, 22 ))
+  }
+
+}</code></pre><p id="3c7b01c6-ccbf-4b42-9867-6101a021b448" class="">
+</p><p id="fbc73a0a-434e-4c35-84c8-8ab88775469b" class=""><strong>Genial ahora debería estar andando todo!!! </strong>😊</p><p id="9fd1edec-7eea-4a5a-ab8f-68166f353855" class="">
+</p><figure id="d2192cc0-cb4c-465f-85c5-8d2ccc328019" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/chrome_VSGMAV1GGD.png"><img style="width:1917px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/chrome_VSGMAV1GGD.png"/></a></figure><p id="e9e37b2d-e861-4947-b409-f09dad460be8" class="">
+</p><p id="feb4a51a-52c8-48db-bea4-bbb353ca8a71" class="">Ahora vamos a componentizar más esto y a poner nuestra funcionalidad de mostrar una persona, dentro de su propio componente en singular <code>persona.components.ts</code></p><p id="c9b8ddc5-5484-451d-802a-8be44c02bcf0" class=""><strong>Te animás a hacer solo/a???</strong></p><p id="bfad420f-d5b4-4826-9be1-c1cb6d23019e" class="">
+</p><p id="8b8dd425-de58-41cc-87f0-c24ed4d9804a" class="">Acá te debe estar fallando un truco y nos introduce a otra cosa importantísima de Angular que es cómo pasar information (<code><strong>props o properties</strong></code><strong> </strong>) de un componente padre a un hijo, eso es super fácil y se hace con el decorator de <code>@Input</code> delante de la variable de clase creada en nuestro componente hijo y así cuando llamamos a nuestro selector desde el padre, solo hacemos referencia a ese nombre definido como <code><strong>Input</strong></code><strong>, mir</strong>á:</p><p id="85b18e3b-548a-4147-ada9-62d586eb9f97" class="">
+</p><pre id="c0e99346-6b39-4243-a936-bd5679a63baf" class="code code-wrap"><code>&lt;div class=&quot;persona&quot;&gt;
+    &lt;h6&gt;Nueva Persona&lt;/h6&gt;
+    &lt;p&gt;Nombre: {{persona.nombre}}&lt;/p&gt;
+    &lt;p&gt;Apellido: {{persona.apellido}}&lt;/p&gt;
+    &lt;p&gt;Edad: {{persona.edad}}&lt;/p&gt;
+&lt;/div&gt;</code></pre><figure id="b39e8360-2957-4c2e-a6f6-927d5593731e" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/3chELirGTL.png"><img style="width:1918px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/3chELirGTL.png"/></a></figure><p id="ccc26c7e-b9f0-42f0-9340-3a4cec77879f" class=""> </p><p id="4dad076b-f0a8-4822-8ad4-e0654d39bfc5" class="">
+</p><pre id="1ff9b587-9e23-4b0b-8a5b-0b53a5a5b7f4" class="code code-wrap"><code>import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { Persona } from &#x27;src/app/models/Persona&#x27;;
+
+@Component({
+  selector: &#x27;app-persona&#x27;,
+  templateUrl: &#x27;./persona.component.html&#x27;,
+  styleUrls: [&#x27;./persona.component.css&#x27;]
+})
+export class PersonaComponent implements OnInit {
+
+  @Input() persona: Persona = new Persona()
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}</code></pre><figure id="5d6b310e-94d3-4b92-8c3e-96f0f5f4a697" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/8TTwWlX6se.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/8TTwWlX6se.png"/></a></figure><p id="f31884f5-8a40-4871-8036-5eb6eb3dfacc" class="">
+</p><p id="62c3edca-7b5b-4092-aa1b-dc4103b048bb" class="">Finalmente, nuestro componente padre <code><strong>personas.component.html</strong></code><strong> </strong>va a quedar así (usando los corchetes para indicar que ese elemento será “pasado” a su componente hijo <strong> </strong></p><figure id="b42b3cfc-40b3-4b72-aecf-39f9b1bd3c0b" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Code_A1DcrV2JkE.png"><img style="width:1915px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Code_A1DcrV2JkE.png"/></a></figure><pre id="465aede8-5789-490c-b1c1-514b32bb402c" class="code code-wrap"><code>&lt;div class=&quot;personas&quot;&gt;
+    &lt;h3&gt; Esta es nuestra lista de personas!&lt;/h3&gt;
+    
+    &lt;div *ngFor=&quot;let persona of personas&quot;&gt;
+        &lt;app-persona [persona]=&quot;persona&quot;&gt;&lt;/app-persona&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre><p id="37567efe-bb90-4b67-ac6b-99f61d3613a4" class="">
+</p><p id="ba953d42-6f74-48d7-b528-dc2b89a22220" class=""><strong>Cómo venis? Ya falta poco!!! </strong></p><p id="d9a4401f-9f86-47d0-a322-e49fcb234cc5" class="">
+</p><p id="467b3701-a84a-4cf4-bd2f-a2e3acc46788" class="">Ahora vamos a intentar hacer lo que se conoce como <em>two-way binding</em><strong><em> </em></strong>y para esto vamos a usar un input de html y una cosa especial de angular que es combinar los corchetes y los paréntesis, entonces! </p><p id="74b7aeed-d25f-402e-b505-a09c3799e716" class="">En <code>persona.component.html,</code> agregamos el input </p><pre id="9d8e103e-52a2-40d8-941a-22fe046dd320" class="code code-wrap"><code>&lt;input type=&quot;text&quot; [(ngModel)]=&quot;persona.nombre&quot;&gt;</code></pre><p id="08e203ef-2157-47ce-b2a4-4fc9b5f757e9" class=""><em>(quedando así)</em></p><figure id="7604a1de-bb07-4247-933f-bc4f1ea9de4a" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Vefbs7Hvf6.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Vefbs7Hvf6.png"/></a></figure><p id="a818990d-182d-4919-99f9-920babfaf2b6" class="">
+</p><p id="fb01da2a-790e-43e5-9010-4da0d08c3b61" class="">Y en el <code><strong>app.module.ts </strong></code>necesitamos agregar dentro de los imports el <code><strong>FormsModule</strong></code><strong> </strong>así:</p><figure id="ca8ede68-342f-4718-b936-1cdffec85e98" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/irNgRN85bU.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/irNgRN85bU.png"/></a></figure><p id="bdc5b7ad-6bb2-4e0d-8d92-a5d623db5a04" class="">
+</p><p id="30cbe906-7b65-4aa4-9801-d90939a30827" class=""><strong>Ahora si! Deberíamos poder modificar y ver el cambio en vivo de los nombres de nuestras </strong></p><p id="ddbb5acf-013b-4fe1-b25a-8ef7b182b6e9" class=""><strong>personas con el input!!</strong></p><figure id="2cd90347-7c7a-4542-812a-a189242d83d5" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/chrome_aSwjtgnG8V.png"><img style="width:1912px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/chrome_aSwjtgnG8V.png"/></a></figure><p id="356eca92-041b-4826-b66f-8ee65877ee35" class="">Para capturar eventos de los elementos html, los ponemos entre paréntesis y de la manera que angular nos inidique en su documentación oficial.</p><p id="f1c01007-3d2e-42ad-9cd9-86080962627a" class="">Por ejemplo en el evento <code>onClick </code>se captura con <code>(click)</code></p><p id="28f44613-953e-4ee9-8387-a0956b434cb1" class="">Creemos un botón para cada persona que cuando se clickee, llame a una función que a su vez llamará al método cumplirAnios() de la clase persona, es decir del objeto persona que estamos modificando. Y su edad se actualizará en vivo (reactividad) </p><p id="2ec63c32-415f-453a-813b-27a88d2dfdc0" class="">
+</p><ul id="6c147865-57a5-413b-9baf-0cf3c1c147c9" class="bulleted-list"><li style="list-style-type:disc">Agregamos en <code>persona.component.html </code></li></ul><pre id="d9995ef7-314b-4bdb-b3ca-1dbd1b70c24f" class="code code-wrap"><code>&lt;button class=&quot;btn btn-primary mb-3&quot; (click)=&quot;festejo(persona)&quot; &gt;Cumplir Años&lt;/button&gt;</code></pre><figure id="60cdf02a-97a2-4f46-ab83-2a606f9ff1e2" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%207.png"><img style="width:1910px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%207.png"/></a></figure><p id="335b103e-39fe-4a2b-b7e8-0773927c362c" class="">
+</p><p id="8cf7add8-6f77-4230-b5b1-dbf63398ae16" class="">Y en <code>persona.component.ts</code> el método que estamos llamando desde el html (festejo). Vale aclarar que le pasamos la persona como parámetro así, nuestra aplicación sabe exactamente a qué persona estamos queriendo modificar su atributo (estado).</p><p id="45440f43-80be-42e2-8a6b-04f49bda8f77" class="">
+</p><pre id="74a35dd8-182b-423a-955e-c048fdaa65c6" class="code code-wrap"><code>festejo(persona:Persona) {
+    persona.cumplirAnios()
+  }</code></pre><figure id="0c8aa87d-b7ac-4a6b-a046-0a22ce90eb46" class="image"><a href="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%208.png"><img style="width:1920px" src="Lab%20Introduccio%CC%81n%20Angular%20-%20ArgentinaPrograma%2092715194fb414f70a02d35d13b51acd7/Untitled%208.png"/></a></figure><p id="e3c08f11-9405-4673-a6e6-af4ed0506550" class="">
+</p><p id="cf0806d0-ea09-49a1-80d4-84264f0ce6b4" class="">
+</p><p id="1ecf71c9-ee47-4c92-a958-2bc5c4eb3d8f" class="">Bueno vamos por el Service! Lo vamos a crear dentro de la carpeta de services con la ayuda de angular, vamos a la Terminal de nuevo y ejecutamos: </p><p id="f4d82aff-a116-4690-945b-d6e29eb4c006" class=""><code>ng generate service services/persona</code></p><p id="0471758a-ed3f-431f-9b44-e2c57f905906" class="">Dentro de la nueva carpeta, services, en el archivo <code><strong>persona.service.ts</strong></code><strong>  </strong>debería quedar algo así: </p><p id="aafe8a5f-2502-47bd-bcb7-5be556c63489" class=""><strong> </strong></p><pre id="f573b2e2-2a62-461f-851f-0c1f04503585" class="code code-wrap"><code>import { Injectable } from &#x27;@angular/core&#x27;;
+import { Persona } from &#x27;../models/Persona&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class PersonaService {
+
+  personas: Persona[] = []
+  constructor() { }
+
+  getAllPersonas(): Persona[] {
+    let persona1 = new Persona(&quot;Hernan&quot;, &quot;Borre&quot;, 28 )
+    this.personas.push(persona1)
+    this.personas.push(new Persona(&quot;Alejandro&quot;, &quot;Fantino&quot;, 55 ))
+    this.personas.push(new Persona(&quot;Nicky&quot;, &quot;Nicole&quot;, 22 ))
+    
+    return this.personas
+  }
+
+  // solo un ejemplo de los servicios que se pueden ofrecer
+  removePersona(persona:Persona):void {
+    // TODO implement logic to remove a Persona
+  }
+}</code></pre><p id="cfef907d-a883-4607-844a-8395242d6f48" class="">
+</p><p id="341c29c8-fb8b-44ef-9a90-c9ad64f1473b" class="">Entonces <code>personas.component.ts</code> va a quedar así:</p><pre id="bb1ffc67-8861-4388-a639-d87deba7ca51" class="code code-wrap"><code>import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Persona } from &#x27;src/app/models/Persona&#x27;;
+import { PersonaService } from &#x27;src/app/services/persona.service&#x27;;
+
+@Component({
+  selector: &#x27;app-personas&#x27;,
+  templateUrl: &#x27;./personas.component.html&#x27;,
+  styleUrls: [&#x27;./personas.component.css&#x27;]
+})
+export class PersonasComponent implements OnInit {
+
+  personas: Persona[] = []
+
+  constructor(private personaService:PersonaService) { }
+
+  ngOnInit(): void {
+    this.getAllPersonas()
+    // let persona1 = new Persona(&quot;Hernan&quot;, &quot;Borre&quot;, 28 )
+    // this.personas.push(persona1)
+    // this.personas.push(new Persona(&quot;Alejandro&quot;, &quot;Fantino&quot;, 55 ))
+    // this.personas.push(new Persona(&quot;Nicky&quot;, &quot;Nicole&quot;, 22 ))
+  }
+
+  getAllPersonas():void {
+    this.personas = this.personaService.getAllPersonas()
+  }
+}</code></pre><p id="0f669c7c-f8d5-450f-8d10-e1182a8fe5c1" class="">
+</p><p id="0787924c-c6c2-4ce7-a33d-26889788a17f" class="">
+</p><p id="fcaa6c82-24a9-45d7-a10c-d61828576e12" class="">‘Bueno nos queda el decorator de <code>@Output</code> para pasar eventos y datos desde nuestros componentes hijos a nuestros padres</p><p id="cbd97054-7de5-4ee1-8ecb-a76e2a7e235b" class="">Vamos a borrar una persona</p><p id="a5500e9c-0d2c-4590-bb2f-f504b5e55f77" class="">
+</p><p id="2bc5f7dc-8b4f-4dd2-a489-bcd6a5b80f6d" class="">Esto involucra cuatro pasos, agregar el botón de Eliminar en el componente hijo, agregar el <code>@Output</code> en el mismo componente hijo y luego hacer la definición del mismo para que emita el evento hacia los componentes padres.</p><p id="9b5c9993-050c-4e3b-b181-056e75583dff" class="">Por último debemos capturar el evento desde el componente padre (persona<strong>s) </strong>en este tutorial y así finalmente, definir el evento capturado y hacer lo necesario con él desde el padre - en este caso será eliminar de la lista de todas las persona, la seleccionada para ser eliminada</p><p id="9f8219ad-9b21-43f2-95b8-aa0ebeb0ec69" class="">
+</p><p id="4ca0d7aa-9204-41e7-8805-40f14a6bf0f2" class="">Veamos como queda todo el código, en orden de implementación: </p><p id="23b07aa3-93da-44d9-9885-2e0e0f5bfc72" class="">
+</p><p id="f4f531a5-ff8c-4d98-88c9-522d55321ca7" class=""><code>persona.component.html</code></p><pre id="1dc51c37-19e2-46c8-8c41-8493058397b8" class="code code-wrap"><code>&lt;div class=&quot;persona&quot;&gt;
+    &lt;h6&gt;Nueva Persona&lt;/h6&gt;
+    &lt;input type=&quot;text&quot; [(ngModel)]=&quot;persona.nombre&quot;&gt;
+    &lt;p&gt;Nombre: {{persona.nombre}}&lt;/p&gt;
+    &lt;p&gt;Apellido: {{persona.apellido}}&lt;/p&gt;
+    &lt;p&gt;Edad: {{persona.edad}}&lt;/p&gt;
+    &lt;button class=&quot;btn btn-danger mb-3&quot; (click)=&quot;borrarPersona(persona)&quot; &gt;Eliminar!&lt;/button&gt;
+    &lt;button class=&quot;btn btn-primary mb-3&quot; (click)=&quot;festejo(persona)&quot; &gt;Cumplir Años&lt;/button&gt; 
+&lt;/div&gt;</code></pre><p id="42876926-e157-433b-a680-3d31922dd291" class="">
+</p><p id="31e3bdff-af1e-4f0a-a84a-eb40399809dc" class=""><code>persona.component.ts</code></p><pre id="97bf3205-7838-478c-955c-c73dd07afbc2" class="code code-wrap"><code>import { Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+import { Persona } from &#x27;src/app/models/Persona&#x27;;
+
+@Component({
+  selector: &#x27;app-persona&#x27;,
+  templateUrl: &#x27;./persona.component.html&#x27;,
+  styleUrls: [&#x27;./persona.component.css&#x27;]
+})
+export class PersonaComponent implements OnInit {
+
+  @Input() persona: Persona = new Persona()
+  @Output() deletePersona:EventEmitter&lt;Persona&gt; = new EventEmitter()
+  
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  festejo(persona:Persona) {
+    persona.cumplirAnios()
+  }
+
+  borrarPersona(personaParaBorrar:Persona) {
+    this.deletePersona.emit(personaParaBorrar)
+  }
+}</code></pre><p id="3c7b26e2-753b-4893-8514-684e82c59a33" class="">
+</p><p id="482c29c8-2cba-4272-a48f-c9070025b0f5" class=""><code>personas.component.html</code></p><pre id="eab528c2-0ddf-43bc-b99f-e9b8d52fa063" class="code code-wrap"><code>&lt;div class=&quot;personas&quot;&gt;
+    &lt;h3&gt; Esta es nuestra lista de personas!&lt;/h3&gt;
+    
+    &lt;div *ngFor=&quot;let persona of personas&quot;&gt;
+        &lt;app-persona [persona]=&quot;persona&quot;
+        (deletePersona)=&quot;borrarPersonaDeLista($event)&quot;&gt;&lt;/app-persona&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre><p id="8684623f-c3f3-4073-abd0-7d605a0259ba" class="">
+</p><p id="b02db25f-dcd0-4025-b65a-f7581ed52016" class=""><code>personas.component.ts</code></p><pre id="e5a205af-ebcc-4c69-95bf-c790feb715ea" class="code code-wrap"><code>import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Persona } from &#x27;src/app/models/Persona&#x27;;
+import { PersonaService } from &#x27;src/app/services/persona.service&#x27;;
+
+@Component({
+  selector: &#x27;app-personas&#x27;,
+  templateUrl: &#x27;./personas.component.html&#x27;,
+  styleUrls: [&#x27;./personas.component.css&#x27;]
+})
+export class PersonasComponent implements OnInit {
+
+  personas: Persona[] = []
+
+  constructor(private personaService:PersonaService) { }
+
+  ngOnInit(): void {
+    this.getAllPersonas()
+    // let persona1 = new Persona(&quot;Hernan&quot;, &quot;Borre&quot;, 28 )
+    // this.personas.push(persona1)
+    // this.personas.push(new Persona(&quot;Alejandro&quot;, &quot;Fantino&quot;, 55 ))
+    // this.personas.push(new Persona(&quot;Nicky&quot;, &quot;Nicole&quot;, 22 ))
+  }
+
+  getAllPersonas():void {
+    this.personas = this.personaService.getAllPersonas()
+  }
+
+  borrarPersonaDeLista(personaParaBorrar: Persona) {
+		// con este truco borramos a la persona pero en realidad deberíamos 
+		// llamar al service 
+    this.personas = this.personas.filter(p =&gt; p.nombre !== personaParaBorrar.nombre)
+  }
+}</code></pre><p id="474ea066-d249-40ba-b66a-362f74796f21" class="">
+</p><p id="2210da4d-2bde-4af7-9191-84f03d237131" class="">Ahora si, deberíamos poder borrar personas desde nuestra lista en la página que hemos creado!  🙂</p></div></article></body></html>
